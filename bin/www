@@ -1,11 +1,5 @@
-#!/usr/bin/env node
-
-/**
- * Module dependencies.
- */
-
 var app = require('../app');
-var debug = require('debug')('openblend-server:server');
+var debug = require('debug')('scentcrate:server');
 var http = require('http');
 
 /**
