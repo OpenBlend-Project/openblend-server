@@ -7,13 +7,16 @@ require("./db");
 // Handles http requests
 const express = require("express");
 
-var app = express();
+const app = express();
 
 require("./config")(app);
 
 // Route handling
-var indexRouter = require('./routes/index.routes');
-app.use('/api', indexRouter);
+const indexRouter = require('./routes/index.routes');
+app.use('/', indexRouter);
+
+const authRouter = require('./routes/auth.routes');
+app.use('/auth', authRouter);
 
 
 module.exports = app;
