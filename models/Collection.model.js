@@ -16,7 +16,7 @@ const collectionSchema = new Schema({
   description: {
     type: String
   },
-  formulae: {
+  formulas: {
     type: [Schema.Types.ObjectId],
     ref: "Formula"
   },

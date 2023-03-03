@@ -1,80 +1,5 @@
 const { Schema, model} = require('mongoose');
 
-// Schema for formula
-const formulaSchema = new Schema({
-  name: {
-    type: String,
-    required: true
-  },
-  version: {
-    type: String,
-    default: "0.0.1"
-  },
-  isPrivate: {
-    type: Boolean,
-    default: false
-  },
-  type: {
-    type: String,
-    enum: [
-      "Accord",
-      "Base",
-      "Fragrance",
-      "Modifier",
-      "Solvent"
-    ]
-  },
-  creator: {
-    type: Schema.Types.ObjectId,
-    ref: "User"
-  },
-  stage: {
-    type: [String],
-    enum: [
-      "Ideation",
-      "Formulatiom",
-      "Refinement",
-      "Production",
-      "Packaging",
-    ],
-    default: "Ideation"
-  },
-  tagline: {
-    type: String,
-    maxLength: 100
-  },
-  description: {
-    type: String,
-    maxLength: 500
-  },
-  olfactiveFamily: {
-    type: String,
-    required: false,
-    enum: [
-      "Aquatic",
-      "Aromatic",
-      "Chypre",
-      "Citrus",
-      "Floral",
-      "Fougère",
-      "Gourmand",
-      "Leather",
-      "Oriental",
-      "Woody"
-    ]
-  },
-  concentration: {
-    type: Number,
-  },
-  ingredients: {
-    type: [rowSchema]
-  },
-  likedBy: {
-    type: [Schema.Types.ObjectId],
-    ref: "User"
-  }
-}, { timestamps: true })
-
 // Schema for ingredient rows
 const rowSchema = new Schema({
   materialId: {
@@ -357,5 +282,81 @@ const rowSchema = new Schema({
 
 
 })
+
+// Schema for formula
+const formulaSchema = new Schema({
+  name: {
+    type: String,
+    required: true
+  },
+  version: {
+    type: String,
+    default: "0.0.1"
+  },
+  isPrivate: {
+    type: Boolean,
+    default: false
+  },
+  type: {
+    type: String,
+    enum: [
+      "Accord",
+      "Base",
+      "Fragrance",
+      "Modifier",
+      "Solvent"
+    ]
+  },
+  creator: {
+    type: Schema.Types.ObjectId,
+    ref: "User"
+  },
+  stage: {
+    type: [String],
+    enum: [
+      "Ideation",
+      "Formulation",
+      "Refinement",
+      "Production",
+      "Packaging",
+    ],
+    default: "Ideation"
+  },
+  tagline: {
+    type: String,
+    maxLength: 100
+  },
+  description: {
+    type: String,
+    maxLength: 500
+  },
+  olfactiveFamily: {
+    type: String,
+    required: false,
+    enum: [
+      "Aquatic",
+      "Aromatic",
+      "Chypre",
+      "Citrus",
+      "Floral",
+      "Fougère",
+      "Gourmand",
+      "Leather",
+      "Oriental",
+      "Woody"
+    ]
+  },
+  concentration: {
+    type: Number,
+  },
+  ingredients: {
+    type: [rowSchema]
+  },
+  likedBy: {
+    type: [Schema.Types.ObjectId],
+    ref: "User"
+  }
+}, { timestamps: true })
+
 
 module.exports = model("Formula", formulaSchema);

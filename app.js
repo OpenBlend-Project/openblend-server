@@ -18,5 +18,8 @@ app.use('/', indexRouter);
 const authRouter = require('./routes/auth.routes');
 app.use('/auth', authRouter);
 
+const formulaRouter = require('./routes/formula.routes');
+app.use('/api', formulaRouter);
+
 
 module.exports = app;
