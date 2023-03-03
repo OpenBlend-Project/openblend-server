@@ -338,7 +338,7 @@ const rowSchema = new Schema({
   dilution: {
     concentration: {
       type: Number,
-      default: 100
+      default: 1
     },
     solventId: {
       type: String
