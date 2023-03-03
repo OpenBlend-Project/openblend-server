@@ -39,6 +39,10 @@ const formulaSchema = new Schema({
     ],
     default: "Ideation"
   },
+  tagline: {
+    type: String,
+    maxLength: 100
+  },
   description: {
     type: String,
   },
