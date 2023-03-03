@@ -16,6 +16,10 @@ const collectionSchema = new Schema({
   description: {
     type: String
   },
+  formulae: {
+    type: [Schema.Types.ObjectId],
+    ref: "Formula"
+  },
   likedBy: {
     type: [Schema.Types.ObjectId],
     ref: "User"
