@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const axios = require('axios');
+const mongoose = require('mongoose');
 
 // Error handling
 const errors = require('../utils/errors.utils');
@@ -139,6 +140,37 @@ router.put('/formulas/:formulaId/ingredients/:ingredientId', (req, res) => {
     })
     .catch(error => {
       res.status(400).json({ error: error.message });
+    });
+});
+
+// PUT - /api/formulas/:formulaId update formula
+router.put("/formulas/:formulaId", (req, res, next) => {
+  console.log("PUT ROUTE CALLED");
+  const { formulaId } = req.params;
+
+  if (!mongoose.Types.ObjectId.isValid(formulaId)) {
+    res.status(400).json({ message: "Specified id is not valid" });
+    return;
+  }
+
+  Formula.findByIdAndUpdate(formulaId, req.body, { new: true })
+    .then((updatedFormula) => res.json(updatedFormula))
+    .catch((error) => res.json(error));
+});
+
+// DELETE - Remove 
+router.delete('/formulas/:formulaId/ingredients/:ingredientId', (req, res) => {
+  const { formulaId, ingredientId } = req.params;
+  
+  Formula.updateOne(
+    { _id: formulaId },
+    { $pull: { ingredients: { _id: ingredientId } } }
+  )
+    .then(() => {
+      res.status(200).json({ message: 'Ingredient deleted successfully' });
+    })
+    .catch(error => {
+      res.status(500).json({ error: error.message });
     });
 });
 
