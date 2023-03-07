@@ -117,14 +117,14 @@ router.get("/formulas", isAuthenticated, (req, res, next) => {
   const userId = req.payload._id;
   
   Formula.find({ creator: userId })
-    .then((formulasFromDB) => console.log("scurryyyy", formulasFromDB))
+    .then((formulasFromDB) => console.log(formulasFromDB))
     .catch((error) => res.json(error));
 })
 
 // PUT  /api/formulas/:formulaId/ingredients/:ingredientsId - updates the ingredient of a formula
 router.put('/formulas/:formulaId/ingredients/:ingredientId', (req, res) => {
   const { formulaId, ingredientId } = req.params;
-  const { grams } = req.body;
+  const { grams, percent } = req.body;
   
   Formula.findById(formulaId)
     .then(formula => {
@@ -133,6 +133,7 @@ router.put('/formulas/:formulaId/ingredients/:ingredientId', (req, res) => {
         throw new Error('Ingredient not found');
       }
         ingredient.amount.grams = grams;
+        ingredient.amount.percent = percent;
       return formula.save();
     })
     .then(formula => {
