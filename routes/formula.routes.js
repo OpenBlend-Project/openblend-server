@@ -122,7 +122,7 @@ router.get("/formulas", isAuthenticated, (req, res, next) => {
 })
 
 // PUT  /api/formulas/:formulaId/ingredients/:ingredientsId - updates the ingredient of a formula
-router.put('/formulas/:formulaId/ingredients/:ingredientId', (req, res) => {
+router.put('/formulas/:formulaId/ingredients/:ingredientId', isAuthenticated, (req, res) => {
   const { formulaId, ingredientId } = req.params;
   const { grams, percent } = req.body;
   
@@ -145,7 +145,7 @@ router.put('/formulas/:formulaId/ingredients/:ingredientId', (req, res) => {
 });
 
 // PUT - /api/formulas/:formulaId update formula
-router.put("/formulas/:formulaId", (req, res, next) => {
+router.put("/formulas/:formulaId", isAuthenticated, (req, res, next) => {
   console.log("PUT ROUTE CALLED");
   const { formulaId } = req.params;
 
@@ -160,7 +160,7 @@ router.put("/formulas/:formulaId", (req, res, next) => {
 });
 
 // DELETE - Remove 
-router.delete('/formulas/:formulaId/ingredients/:ingredientId', (req, res) => {
+router.delete('/formulas/:formulaId/ingredients/:ingredientId', isAuthenticated, (req, res) => {
   const { formulaId, ingredientId } = req.params;
   
   Formula.updateOne(
