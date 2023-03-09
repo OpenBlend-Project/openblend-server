@@ -14,15 +14,19 @@ const collectionSchema = new Schema({
     default: false
   },
   description: {
-    type: String
+    type: String,
+    required: false,
+    default: []
   },
   formulas: {
     type: [Schema.Types.ObjectId],
-    ref: "Formula"
+    ref: "Formula",
+    default: []
   },
   likedBy: {
     type: [Schema.Types.ObjectId],
-    ref: "User"
+    ref: "User",
+    default: []
   }
 }, { timestamps: true });
 

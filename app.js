@@ -21,5 +21,8 @@ app.use('/auth', authRouter);
 const formulaRouter = require('./routes/formula.routes');
 app.use('/api', formulaRouter);
 
+const collectionRouter = require('./routes/collection.routes');
+app.use('/api', collectionRouter);
+
 
 module.exports = app;

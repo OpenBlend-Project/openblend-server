@@ -312,7 +312,7 @@ const formulaSchema = new Schema({
     ref: "User"
   },
   stage: {
-    type: [String],
+    type: String,
     enum: [
       "Ideation",
       "Formulation",
