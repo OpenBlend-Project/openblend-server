@@ -44,8 +44,8 @@ router.post("/formulas", (req, res, next) => {
     ingredients,
     likedBy
   })
-  .then((response) => res.json(response))
-  .catch((error) => res.json(error));
+    .then((newFormula) => res.json(newFormula))
+    .catch((error) => res.json(error));
 })
 
 
@@ -117,7 +117,7 @@ router.get("/formulas", isAuthenticated, (req, res, next) => {
   const userId = req.payload._id;
   
   Formula.find({ creator: userId })
-    .then((formulasFromDB) => console.log(formulasFromDB))
+    .then((formulasFromDB) => res.json(formulasFromDB))
     .catch((error) => res.json(error));
 })
 
@@ -169,6 +169,20 @@ router.delete('/formulas/:formulaId/ingredients/:ingredientId', isAuthenticated,
   )
     .then(() => {
       res.status(200).json({ message: 'Ingredient deleted successfully' });
+    })
+    .catch(error => {
+      res.status(500).json({ error: error.message });
+    });
+});
+
+
+// DELETE /api/formulas/:formulaId
+router.delete('/formulas/:formulaId', isAuthenticated, (req, res, next) => {
+  const { formulaId } = req.params;
+
+  Formula.findOneAndDelete(formulaId)
+    .then(() => {
+      res.status(200).json({ message: "Formula deleted successfully" });
     })
     .catch(error => {
       res.status(500).json({ error: error.message });
