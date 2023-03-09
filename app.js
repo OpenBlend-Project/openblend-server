@@ -11,7 +11,7 @@ const app = express();
 
 require("./config")(app);
 
-// Route handling
+// Routes
 const indexRouter = require('./routes/index.routes');
 app.use('/', indexRouter);
 
