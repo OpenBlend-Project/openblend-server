@@ -68,7 +68,7 @@ router.get("/formulas/:id", isAuthenticated, (req, res, next) => {
     const promises = formulaFromDB.ingredients.map(ingredient => {
 
       // First, fetch the material for the current ingredient
-      return axios.get(`http://localhost:3005/api/materials/${ingredient.materialId}`)
+      return axios.get(`https://scentcrate.cyclic.app/api/materials/${ingredient.materialId}`)
         .then((rawMaterialFromAPI) => {
 
           // Add the material to the ingredient object
@@ -78,7 +78,7 @@ router.get("/formulas/:id", isAuthenticated, (req, res, next) => {
           if (ingredient.dilution && ingredient.dilution.solventId) {
             // If so, fetch the solvent for the ingredient
             console.log("adding solvent")
-            return axios.get(`http://localhost:3005/api/materials/${ingredient.dilution.solventId}`)
+            return axios.get(`https://scentcrate.cyclic.app/api/materials/${ingredient.dilution.solventId}`)
               .then((rawSolventFromAPI) => {
 
                 // Add the solvent to the dilution object
