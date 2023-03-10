@@ -72,7 +72,6 @@ router.post("/signup", (req, res, next) => {
 // POST  /auth/login - Verifies email and password and returns a JWT
 router.post("/signin", (req, res, next) => {
   const { email, password } = req.body;
-  console.log("hello");
 
   if (email === "" || password === "") {
     res.status(400).json({ message: errors.mandatorySigninFieldsMissing.message });
