@@ -2,7 +2,7 @@ const express = require("express");
 const logger = require("morgan");
 const cookieParser = require("cookie-parser");
 const path = require("path");
-const FRONTEND_URL = process.env.ORIGIN || "https://openblend.netlify.app/";
+const FRONTEND_URL = process.env.ORIGIN || "https://openblend.netlify.app";
 
 // Middleware configuration
 module.exports = (app) => {
@@ -10,7 +10,7 @@ module.exports = (app) => {
   app.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', FRONTEND_URL);
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+    res.setHeader("Access-Control-Allow-Headers", "Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers");
     res.setHeader('Access-Control-Allow-Credentials', true);
     next();
   });
