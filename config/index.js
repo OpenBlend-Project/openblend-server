@@ -10,12 +10,13 @@ module.exports = (app) => {
   app.set("trust proxy", 1)
 
   // Using CORS to allow requests from the frontend
-  app.use(
-    cors({
-      origin: [FRONTEND_URL],
-      credentials: true
-    })
-  )
+  app.use(function (req, res, next) {
+    res.setHeader('Access-Control-Allow-Origin', FRONTEND_URL);
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+    res.setHeader('Access-Control-Allow-Credentials', true);
+    next();
+  });
 
   // In development environment the app logs
   app.use(logger("dev"));
