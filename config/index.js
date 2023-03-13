@@ -2,20 +2,24 @@ const express = require("express");
 const logger = require("morgan");
 const cookieParser = require("cookie-parser");
 const path = require("path");
-const FRONTEND_URL = process.env.ORIGIN || "https://openblend.netlify.app";
+// const FRONTEND_URL = process.env.ORIGIN || "https://openblend.netlify.app";
 
 // Middleware configuration
 module.exports = (app) => {
   // Using CORS to allow requests from the frontend
   app.use(function (req, res, next) {
-    res.setHeader('Access-Control-Allow-Origin', FRONTEND_URL);
+    const allowedOrigins = ['http://localhost:8080', 'https://openblend.netlify.app'];
+    const origin = req.headers.origin;
+    if (allowedOrigins.includes(origin)) {
+         res.setHeader('Access-Control-Allow-Origin', origin);
+    }
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
     res.setHeader("Access-Control-Allow-Headers", "Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers");
     res.setHeader('Access-Control-Allow-Credentials', true);
     next();
   });
   
-  app.set("trust proxy", 1)
+  // app.set("trust proxy", 1)
 
   // In development environment the app logs
   app.use(logger("dev"));
