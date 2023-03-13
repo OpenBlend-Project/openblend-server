@@ -2,7 +2,7 @@ const express = require("express");
 const logger = require("morgan");
 const cookieParser = require("cookie-parser");
 const path = require("path");
-const FRONTEND_URL = process.env.ORIGIN || "http://localhost:3000";
+const FRONTEND_URL = process.env.ORIGIN || "https://openblend.netlify.app/";
 
 // Middleware configuration
 module.exports = (app) => {
