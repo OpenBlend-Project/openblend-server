@@ -12,7 +12,8 @@ module.exports = (app) => {
   // Using CORS to allow requests from the frontend
   app.use(
     cors({
-      origin: [FRONTEND_URL]
+      origin: [FRONTEND_URL],
+      credentials: true
     })
   )
 
