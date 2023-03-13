@@ -6,8 +6,6 @@ const FRONTEND_URL = process.env.ORIGIN || "http://localhost:3000";
 
 // Middleware configuration
 module.exports = (app) => {
-  app.set("trust proxy", 1)
-
   // Using CORS to allow requests from the frontend
   app.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', FRONTEND_URL);
@@ -16,6 +14,8 @@ module.exports = (app) => {
     res.setHeader('Access-Control-Allow-Credentials', true);
     next();
   });
+  
+  app.set("trust proxy", 1)
 
   // In development environment the app logs
   app.use(logger("dev"));
