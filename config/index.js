@@ -2,16 +2,13 @@ const express = require("express");
 const logger = require("morgan");
 const cookieParser = require("cookie-parser");
 const path = require("path");
+const cors = require("cors");
 const FRONTEND_URL = process.env.ORIGIN || "https://openblend.netlify.app";
 
 // Middleware configuration
 module.exports = (app) => {
   // Using CORS to allow requests from the frontend
-  app.use(
-    cors({
-      origin: [FRONTEND_URL]
-    })
-  )
+  app.use(cors())
   
   // app.set("trust proxy", 1)
 
