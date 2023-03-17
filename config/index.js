@@ -8,7 +8,7 @@ const FRONTEND_URL = process.env.ORIGIN || "https://openblend.netlify.app";
 // Middleware configuration
 module.exports = (app) => {
   // Using CORS to allow requests from the frontend
-  app.use(cors())
+  app.use(cors());
   
   // app.set("trust proxy", 1)
 
